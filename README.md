@@ -1,4 +1,4 @@
-LOST Paws 🐾
+Lost Paws 🐾
 
 Lost Paws es una aplicación móvil desarrollada en Android Studio con Kotlin y Firebase 
 que permite a los usuarios reportar mascotas perdidas, publicar mascotas encontradas y 
