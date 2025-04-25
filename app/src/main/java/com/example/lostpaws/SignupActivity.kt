@@ -1,20 +1,38 @@
 package com.example.lostpaws
 
-import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import android.widget.Toast
+import android.util.Log
 
-class SignupActivity : AppCompatActivity() {
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
+class SignUpActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_signup)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        // Botón Sign Up
+        val signUpButton: Button = findViewById(R.id.btnSignUp)
+        signUpButton.setOnClickListener {
+            // Aquí va la lógica de registro. Si el registro es exitoso, se redirige al LoginActivity
+            // Lógica de registro, por ahora solo redirige al LoginActivity
+            val intent = Intent(this, MainActivity::class.java) // Redirigir al MainActivity
+            startActivity(intent)
+            finish()  // Cerrar SignUpActivity
         }
+
+        val tvHaveAccount: TextView = findViewById(R.id.tvHaveAccount)
+        tvHaveAccount.setOnClickListener {
+            Log.d("SignupActivity", "Clic en 'Already have an account?'")
+            Toast.makeText(this, "Clic detectado", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 }

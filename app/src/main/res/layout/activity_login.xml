@@ -13,7 +13,7 @@
         android:id="@+id/logoImage"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginTop=" 0dp"
+        android:layout_marginTop=" 2dp"
         android:src="@drawable/paw_logo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
 
     <!-- Tarjeta de Log In -->
     <androidx.cardview.widget.CardView
-        android:id="@+id/loginCard"
+        android:id="@+id/main"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
