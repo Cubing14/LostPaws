@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f0f0f0">
+
+    <!-- Título del formulario -->
+    <TextView
+        android:id="@+id/form_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Report Lost Pet"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true" />
+
+    <!-- Nombre de la mascota -->
+    <EditText
+        android:id="@+id/pet_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/form_title"
+        android:layout_marginTop="20dp"
+        android:hint="Pet Name"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:background="@drawable/edittext_border" />
+
+    <!-- Edad de la mascota -->
+    <EditText
+        android:id="@+id/pet_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pet_name"
+        android:layout_marginTop="20dp"
+        android:hint="Pet Age"
+        android:inputType="number"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:background="@drawable/edittext_border" />
+
+    <!-- Raza de la mascota -->
+    <EditText
+        android:id="@+id/pet_breed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pet_age"
+        android:layout_marginTop="20dp"
+        android:hint="Pet Breed"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:background="@drawable/edittext_border" />
+
+    <!-- Tipo de la mascota -->
+    <Spinner
+        android:id="@+id/pet_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pet_breed"
+        android:layout_marginTop="20dp" />
+
+    <!-- Ubicación de la mascota -->
+    <EditText
+        android:id="@+id/pet_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pet_type"
+        android:layout_marginTop="20dp"
+        android:hint="Location where the pet was lost"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:background="@drawable/edittext_border" />
+
+    <!-- Mapa (usando MapView de Google Maps) -->
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/lost_pet_map"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/pet_location"
+        android:layout_marginTop="20dp" />
+
+    <!-- Botón para enviar el formulario -->
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_below="@id/lost_pet_map"
+        android:layout_marginTop="20dp"
+        android:background="#FF6D00"
+        android:textColor="#FFFFFF"
+        android:padding="10dp" />
+
+</RelativeLayout>

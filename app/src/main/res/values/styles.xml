@@ -1,0 +1,12 @@
+<resources>
+    <style name="NavButtonStyle">
+        <item name="android:background">@drawable/nav_button_selector</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:cornerRadius">16dp</item>
+    </style>
+</resources>
