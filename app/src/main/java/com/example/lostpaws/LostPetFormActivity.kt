@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 
 class LostPetFormActivity : AppCompatActivity() {
 
@@ -15,6 +16,7 @@ class LostPetFormActivity : AppCompatActivity() {
     private lateinit var petTypeSpinner: Spinner
     private lateinit var petLocationEditText: EditText
     private lateinit var submitButton: Button
+    private lateinit var backButton: ImageView  // Flecha para retroceder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,12 +29,18 @@ class LostPetFormActivity : AppCompatActivity() {
         petTypeSpinner = findViewById(R.id.pet_type)
         petLocationEditText = findViewById(R.id.pet_location)
         submitButton = findViewById(R.id.submit_button)
+        backButton = findViewById(R.id.back_button)  // Flecha para retroceder
 
         // Configurar spinner para tipo de mascota
         val petTypes = arrayOf("Dog", "Cat", "Other")
         val petTypeAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, petTypes)
         petTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         petTypeSpinner.adapter = petTypeAdapter
+
+        // Configurar el botón de retroceso
+        backButton.setOnClickListener {
+            onBackPressed()  // Navegar hacia la actividad anterior
+        }
 
         // Configurar el botón de envío
         submitButton.setOnClickListener {
