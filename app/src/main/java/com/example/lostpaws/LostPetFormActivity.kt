@@ -1,12 +1,17 @@
 package com.example.lostpaws
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.provider.MediaStore
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.ArrayAdapter
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 class LostPetFormActivity : AppCompatActivity() {
 
@@ -16,33 +21,42 @@ class LostPetFormActivity : AppCompatActivity() {
     private lateinit var petTypeSpinner: Spinner
     private lateinit var petLocationEditText: EditText
     private lateinit var submitButton: Button
-    private lateinit var backButton: ImageView  // Flecha para retroceder
+    private lateinit var uploadPhotoButton: Button
+    private lateinit var petImageView: ImageView
+
+    private var imageUri: Uri? = null
+
+    // Lista global para almacenar las publicaciones
+    companion object {
+        val petPosts = ArrayList<PetPost>()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lost_pet_form)
 
-        // Inicializar vistas
         petNameEditText = findViewById(R.id.pet_name)
         petAgeEditText = findViewById(R.id.pet_age)
         petBreedEditText = findViewById(R.id.pet_breed)
         petTypeSpinner = findViewById(R.id.pet_type)
         petLocationEditText = findViewById(R.id.pet_location)
         submitButton = findViewById(R.id.submit_button)
-        backButton = findViewById(R.id.back_button)  // Flecha para retroceder
+        uploadPhotoButton = findViewById(R.id.upload_photo_button)
+        petImageView = findViewById(R.id.pet_image_view)
 
-        // Configurar spinner para tipo de mascota
+        // Configurar el spinner para el tipo de mascota
         val petTypes = arrayOf("Dog", "Cat", "Other")
         val petTypeAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, petTypes)
         petTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         petTypeSpinner.adapter = petTypeAdapter
 
-        // Configurar el botón de retroceso
-        backButton.setOnClickListener {
-            onBackPressed()  // Navegar hacia la actividad anterior
+        // Configurar el botón para elegir la foto
+        uploadPhotoButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(intent, 1)
         }
 
-        // Configurar el botón de envío
+        // Configurar el botón de enviar
         submitButton.setOnClickListener {
             val petName = petNameEditText.text.toString()
             val petAge = petAgeEditText.text.toString()
@@ -50,8 +64,27 @@ class LostPetFormActivity : AppCompatActivity() {
             val petType = petTypeSpinner.selectedItem.toString()
             val petLocation = petLocationEditText.text.toString()
 
-            // Aquí puedes manejar la lógica para guardar la información o enviarla al backend
-            // Mostrar un mensaje, guardar la información, etc.
+            // Crear una nueva publicación
+            val petPost = PetPost(petName, petAge, petBreed, petType, petLocation, imageUri)
+
+            // Guardar la publicación en la lista
+            petPosts.add(petPost)
+
+            // Notificar al usuario
+            Toast.makeText(this, "Publication added!", Toast.LENGTH_SHORT).show()
+
+            // Volver al menú de navegación (por ejemplo)
+            finish()
+        }
+    }
+
+    // Manejo de la selección de imagen
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK && requestCode == 1) {
+            imageUri = data?.data
+            petImageView.setImageURI(imageUri)
         }
     }
 }
