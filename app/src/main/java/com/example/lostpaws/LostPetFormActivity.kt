@@ -1,9 +1,11 @@
+package com.example.lostpaws
+
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
 
 class LostPetFormActivity : AppCompatActivity() {
 

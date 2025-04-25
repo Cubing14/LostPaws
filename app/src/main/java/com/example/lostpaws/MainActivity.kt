@@ -1,10 +1,8 @@
 package com.example.lostpaws
 
-import LostPetFormActivity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -28,42 +26,42 @@ class MainActivity : AppCompatActivity() {
 
         val lostPetButton: Button = findViewById(R.id.btn_lost_pet)
 
-        // Establecer "Dogs" como texto por defecto
+        // Establecer "Categories" como texto por defecto
         categoryText.text = "Categories"
 
-        // Establecer el borde por defecto
+        // Establecer el borde por defecto en los íconos
         dogIcon.setBackgroundResource(R.drawable.icon_border_selected)
         catIcon.setBackgroundResource(R.drawable.icon_border_default)
         othersIcon.setBackgroundResource(R.drawable.icon_border_default)
 
-        // Establecer el texto de la categoría cuando se hace clic en "Dog"
+        // Clic en "Dog"
         dogButton.setOnClickListener {
             categoryText.text = "Dogs"
-            dogIcon.setBackgroundResource(R.drawable.icon_border_selected)
-            catIcon.setBackgroundResource(R.drawable.icon_border_default)
-            othersIcon.setBackgroundResource(R.drawable.icon_border_default)
+            updateCategoryIcons(dogIcon, catIcon, othersIcon)
         }
 
-        // Establecer el texto de la categoría cuando se hace clic en "Cat"
+        // Clic en "Cat"
         catButton.setOnClickListener {
             categoryText.text = "Cats"
-            dogIcon.setBackgroundResource(R.drawable.icon_border_default)
-            catIcon.setBackgroundResource(R.drawable.icon_border_selected)
-            othersIcon.setBackgroundResource(R.drawable.icon_border_default)
+            updateCategoryIcons(catIcon, dogIcon, othersIcon)
         }
 
-        // Establecer el texto de la categoría cuando se hace clic en "Others"
+        // Clic en "Others"
         othersButton.setOnClickListener {
             categoryText.text = "Others"
-            dogIcon.setBackgroundResource(R.drawable.icon_border_default)
-            catIcon.setBackgroundResource(R.drawable.icon_border_default)
-            othersIcon.setBackgroundResource(R.drawable.icon_border_selected)
+            updateCategoryIcons(othersIcon, dogIcon, catIcon)
         }
 
-        // Manejo de clic en "Lost your pet?" (botón)
+        // Clic en "Lost your pet?"
         lostPetButton.setOnClickListener {
             val intent = Intent(this, LostPetFormActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    // Función auxiliar para actualizar los íconos de las categorías
+    private fun updateCategoryIcons(selected: ImageView, vararg others: ImageView) {
+        selected.setBackgroundResource(R.drawable.icon_border_selected)
+        others.forEach { it.setBackgroundResource(R.drawable.icon_border_default) }
     }
 }
