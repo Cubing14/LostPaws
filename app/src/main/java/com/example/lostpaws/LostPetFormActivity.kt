@@ -64,6 +64,13 @@ class LostPetFormActivity : AppCompatActivity() {
             val petType = petTypeSpinner.selectedItem.toString()
             val petLocation = petLocationEditText.text.toString()
 
+            val closeButton: ImageView = findViewById(R.id.btn_close)
+
+// Cerrar la actividad al hacer clic en la "X"
+            closeButton.setOnClickListener {
+                finish() // Vuelve a la pantalla anterior
+            }
+
             // Crear una nueva publicación
             val petPost = PetPost(petName, petAge, petBreed, petType, petLocation, imageUri)
 
@@ -87,4 +94,6 @@ class LostPetFormActivity : AppCompatActivity() {
             petImageView.setImageURI(imageUri)
         }
     }
+
+
 }

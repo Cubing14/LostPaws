@@ -36,6 +36,7 @@
             android:name=".LostPetFormActivity"
             android:exported="true" />
 
+        <activity android:name=".PetDetailActivity" />
 
     </application>
 

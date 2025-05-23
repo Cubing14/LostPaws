@@ -1,5 +1,6 @@
 package com.example.lostpaws
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,15 @@ class PetAdapter(private val pets: List<Pet>) : RecyclerView.Adapter<PetAdapter.
         holder.petImage.setImageResource(pet.imageRes)
         holder.petName.text = pet.name
         holder.petType.text = pet.type
+
+        // Manejar el clic en una mascota
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, PetDetailActivity::class.java)
+            intent.putExtra("EXTRA_PET_NAME", pet.name)
+            intent.putExtra("EXTRA_PET_TYPE", pet.type)
+            intent.putExtra("EXTRA_PET_IMAGE", pet.imageRes)
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = pets.size
