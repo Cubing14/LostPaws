@@ -79,14 +79,14 @@
                 android:background="@android:color/darker_gray"/>
 
             <TextView
-                android:id="@+id/tvForgotPassword"
+                android:id="@+id/btnSignup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Forgot password?"
-                android:textSize="14sp"
-                android:textColor="@android:color/darker_gray"
+                android:layout_gravity="end"
                 android:layout_marginTop="10dp"
-                android:layout_gravity="end"/>
+                android:text="Not Registered Yet? Sign Up!"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp" />
 
             <!-- Botón Log In -->
             <Button
